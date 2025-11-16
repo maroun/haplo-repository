@@ -1,0 +1,135 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    SPACE FACILITATION PLUGIN                              ║
+║                    QUICK START DEMO GUIDE                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+🚀 FASTEST WAY TO DEMO (RIGHT NOW - 2 minutes):
+
+1. Open the file: demo_interactive.html
+   - Just double-click it or drag to your browser
+   - Works offline, no installation needed
+   - Fully interactive UI demonstration
+
+2. Try the demo scenarios:
+   ✓ Proposal Development (Scaffolded Mode)
+   ✓ Ethics Review (Emergent Mode)
+   ✓ User Query (Responsive Mode)
+   ✓ Background Monitoring (Ambient Mode)
+
+3. Interact with the interface:
+   - Click "Load Scenario" to switch between scenarios
+   - Click "Browse Resource Library" to see all resources
+   - Click on resources to view details
+   - Use feedback buttons to see interactions
+
+═══════════════════════════════════════════════════════════════════════════
+
+📋 FOR A PRESENTATION (15-20 minutes):
+
+1. Read: DEMO_PRESENTATION.md
+   - Complete script with timing
+   - Scenario walkthroughs
+   - Q&A responses
+   - Tips for different audiences
+
+2. Use demo_interactive.html during presentation
+
+3. Show the code if asked:
+   - space_facilitation/js/ - Core logic
+   - space_facilitation/template/ - UI templates
+   - space_facilitation/static/facilitation.css - Styling
+
+═══════════════════════════════════════════════════════════════════════════
+
+🏗️ TO DEPLOY ON ACTUAL HAPLO (30 minutes - 2 hours):
+
+1. Read: DEMO_SETUP_GUIDE.md
+   - Option 1: Visual mockup (fastest)
+   - Option 2: Local Haplo instance (recommended)
+   - Option 3: Presentation only
+
+2. For local Haplo setup:
+   - Install Docker
+   - Follow Haplo Docker guide: https://docs.haplo.org/platform/run/docker
+   - Copy space_facilitation/ to Haplo plugins directory
+   - Activate via System Management > Plugins
+
+═══════════════════════════════════════════════════════════════════════════
+
+📚 COMPREHENSIVE DOCUMENTATION:
+
+- SPACE_FACILITATION_GUIDE.md - Full implementation guide
+- space_facilitation/readme.txt - Plugin documentation
+- DEMO_SETUP_GUIDE.md - Detailed setup options
+- DEMO_PRESENTATION.md - Presentation script
+
+═══════════════════════════════════════════════════════════════════════════
+
+💡 RECOMMENDED DEMO FLOW:
+
+1. START: Open demo_interactive.html
+2. SHOW: Load "Proposal Development" scenario
+   - Explain scaffolded mode
+   - Highlight resources
+   - Show feedback mechanisms
+
+3. SHOW: Switch to "Ethics Review" scenario
+   - Explain emergent mode
+   - Demonstrate context adaptation
+   - Show scalar awareness
+
+4. INTERACT: Click "Browse Resource Library"
+   - Show resource categories
+   - Open a resource type
+   - Explain discipline adaptations
+
+5. DISCUSS: Philosophy and approach
+   - Emergence over prescription
+   - User autonomy
+   - Learning mechanisms
+
+6. CODE WALKTHROUGH (if technical audience):
+   - Show intervention_engine.js
+   - Explain resource_provider.js
+   - Demo workflow_monitor.js
+
+7. Q&A: Use DEMO_PRESENTATION.md for common questions
+
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 KEY POINTS TO EMPHASIZE:
+
+✓ Resources "rise to usefulness" rather than competing for attention
+✓ Four intervention modes adapt to context (emergent, scaffolded, 
+  responsive, ambient)
+✓ User autonomy is central - always available, never forced
+✓ Scalar awareness - works at individual, group, community, institutional
+  levels
+✓ Discipline-specific adaptations while maintaining core principles
+✓ Extensible - easy to add resources and customize
+✓ Integrates with existing Haplo workflows
+
+═══════════════════════════════════════════════════════════════════════════
+
+🗣️ GATHERING FEEDBACK:
+
+Ask these questions:
+1. What resonates with you about this approach?
+2. What concerns does it raise?
+3. What's missing?
+4. How would this fit in your context?
+5. Would you use this? Why or why not?
+
+Take notes and iterate based on responses!
+
+═══════════════════════════════════════════════════════════════════════════
+
+💬 NEED HELP?
+
+- Review the comprehensive guides
+- Check the code comments (heavily documented)
+- Consult Haplo docs: https://docs.haplo.org
+
+═══════════════════════════════════════════════════════════════════════════
+
+Good luck with your demo! 🌱
