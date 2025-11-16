@@ -1,0 +1,103 @@
+
+pageTitle(resource.title)
+
+<div class="space-facilitation-resource">
+
+  <div class="resource-header">
+    <h1> resource.title </h1>
+    <div class="resource-meta">
+      <span class="resource-type"> resource.type </span>
+      <span class="resource-scales">
+        "Applicable scales: "
+        each(resource.scaleLevels) {
+          <span class="scale-badge"> . </span>
+        }
+      </span>
+    </div>
+  </div>
+
+  <div class="resource-overview">
+    <h2> "Overview" </h2>
+    <p> resource.content.overview </p>
+  </div>
+
+  if(resource.disciplineNote) {
+    <div class="discipline-adaptation">
+      <h3> "For Your Discipline" </h3>
+      <p class="discipline-specific"> resource.disciplineNote </p>
+    </div>
+  }
+
+  if(resource.content.sections) {
+    <div class="resource-sections">
+      <h2> "Key Sections" </h2>
+      <ul class="section-list">
+        each(resource.content.sections) {
+          <li> . </li>
+        }
+      </ul>
+    </div>
+  }
+
+  if(resource.content.checkpoints) {
+    <div class="resource-checkpoints">
+      <h2> "Checklist" </h2>
+      <ul class="checklist">
+        each(resource.content.checkpoints) {
+          <li class="checkpoint-item">
+            <input type="checkbox" id=["checkpoint-" index]>
+            <label for=["checkpoint-" index]> . </label>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+  if(resource.content.components) {
+    <div class="resource-components">
+      <h2> "Components" </h2>
+      <ul class="component-list">
+        each(resource.content.components) {
+          <li> . </li>
+        }
+      </ul>
+    </div>
+  }
+
+  if(resource.content.principles) {
+    <div class="resource-principles">
+      <h2> "Key Principles" </h2>
+      <ul class="principle-list">
+        each(resource.content.principles) {
+          <li> . </li>
+        }
+      </ul>
+    </div>
+  }
+
+  if(relatedResources) {
+    <div class="related-resources">
+      <h2> "Related Resources" </h2>
+      <ul class="related-list">
+        each(relatedResources) {
+          <li>
+            <a href=link> title </a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+
+  <div class="resource-actions">
+    <a href="/do/space-facilitation/dashboard" class="btn btn-secondary">
+      "Back to Dashboard"
+    </a>
+    <button class="btn btn-primary" data-action="mark-helpful">
+      "This was helpful"
+    </button>
+    <button class="btn btn-outline-secondary" data-action="feedback">
+      "Provide Feedback"
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,92 @@
+
+pageTitle("Community Engagement Facilitation")
+
+<div class="space-facilitation-dashboard">
+
+  <div class="facilitation-header">
+    <h1> "SPACE Community Engagement Facilitation" </h1>
+    <p class="lead">
+      "Intelligent support for navigating community engagement in graduate education"
+    </p>
+  </div>
+
+  if(hasActiveOpportunities) {
+    <div class="facilitation-opportunities">
+      <h2> "Current Support Available" </h2>
+
+      each(opportunities) {
+        <div class=["facilitation-card" "mode-" mode]>
+          <div class="facilitation-card-header">
+            <h3> description </h3>
+            <span class="facilitation-mode-badge"> mode </span>
+          </div>
+
+          <div class="facilitation-card-body">
+            if(resources) {
+              <h4> "Suggested Resources:" </h4>
+              <ul class="facilitation-resources">
+                each(resources) {
+                  <li>
+                    <a href=link class="resource-link"> title </a>
+                    if(disciplineNote) {
+                      <span class="discipline-note"> disciplineNote </span>
+                    }
+                  </li>
+                }
+              </ul>
+            }
+          </div>
+
+          <div class="facilitation-card-footer">
+            <button class="btn btn-sm btn-outline-primary" data-action="view-resources">
+              "Explore Resources"
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" data-action="dismiss">
+              "Not Now"
+            </button>
+            <button class="btn btn-sm btn-link" data-action="feedback">
+              "This isn't quite right"
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  unless(hasActiveOpportunities) {
+    <div class="facilitation-empty-state">
+      <p> "No active facilitation opportunities at the moment." </p>
+      <p> "Resources are available when you need them." </p>
+      <a href="/do/space-facilitation/resources" class="btn btn-primary">
+        "Browse All Resources"
+      </a>
+    </div>
+  }
+
+  <div class="facilitation-resource-library">
+    <h2> "Resource Library" </h2>
+
+    <div class="resource-categories">
+      each(resourceTypes) {
+        <div class="resource-category">
+          <h3> typeName </h3>
+          <p class="text-muted"> typeDescription </p>
+          <a href=["/do/space-facilitation/resources?type=" typeKey] class="btn btn-sm btn-outline-primary">
+            "View " typeName
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="facilitation-settings">
+    <h2> "Preferences" </h2>
+    <p>
+      "Customize how facilitation support appears to you."
+    </p>
+    <a href="/do/space-facilitation/preferences" class="btn btn-outline-secondary">
+      "Manage Preferences"
+    </a>
+  </div>
+
+</div>

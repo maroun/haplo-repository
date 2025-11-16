@@ -1,0 +1,34 @@
+
+# ------ Attributes -------------------------
+
+attribute space:attribute:facilitation-mode as FacilitationMode
+attribute space:attribute:intervention-type as InterventionType
+attribute space:attribute:resource-type as ResourceType
+attribute space:attribute:scale-level as ScaleLevel
+attribute space:attribute:discipline-context as DisciplineContext
+attribute space:attribute:trigger-condition as TriggerCondition
+attribute space:attribute:relevance-score as RelevanceScore
+attribute space:attribute:created-date as CreatedDate
+attribute space:attribute:suggested-resource as SuggestedResource
+attribute space:attribute:related-workflow as RelatedWorkflow
+attribute space:attribute:resource-content as ResourceContent
+
+# ------ Types -----------------------------
+
+type space:type:facilitation-opportunity as FacilitationOpportunity
+type space:type:facilitation-resource as FacilitationResource
+type space:type:facilitation-intervention as FacilitationIntervention
+type space:type:user-facilitation-preference as UserFacilitationPreference
+
+# ------ Qualifiers -------------------------
+
+qualifier space:qualifier:emergent as EmergentMode
+qualifier space:qualifier:scaffolded as ScaffoldedMode
+qualifier space:qualifier:responsive as ResponsiveMode
+qualifier space:qualifier:ambient as AmbientMode
+
+# ------ Groups -----------------------------
+
+group space:group:facilitation-administrators as FacilitationAdministrators
+group space:group:facilitation-users as FacilitationUsers
+

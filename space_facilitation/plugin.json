@@ -1,0 +1,26 @@
+{
+  "pluginName": "space_facilitation",
+  "pluginAuthor": "SPACE Research Community",
+  "pluginVersion": 1,
+  "displayName": "SPACE Community Engagement Facilitation",
+  "displayDescription": "Intelligent facilitation support for PhD advisors navigating community engagement in graduate education",
+  "apiVersion": 4,
+  "privilegesRequired": ["pDatabase"],
+  "use": [
+    "std:reporting",
+    "std:workflow"
+  ],
+  "depend": [
+    "std_action_panel",
+    "std_reporting",
+    "std_workflow",
+    "hres_repository"
+  ],
+  "load": [
+    "js/space_facilitation.js",
+    "js/workflow_monitor.js",
+    "js/resource_provider.js",
+    "js/intervention_engine.js"
+  ],
+  "respond": ["/do/space-facilitation"]
+}

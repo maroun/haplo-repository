@@ -1,0 +1,520 @@
+/* SPACE Community Engagement Facilitation Styles
+ * Design philosophy: Unobtrusive, helpful, accessible
+ * Resources rise to usefulness rather than demanding attention
+ */
+
+/* ========================================
+   Dashboard Layout
+   ======================================== */
+
+.space-facilitation-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.facilitation-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 1rem;
+}
+
+.facilitation-header h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.facilitation-header .lead {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   Facilitation Cards
+   ======================================== */
+
+.facilitation-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.facilitation-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Mode-specific styling */
+.facilitation-card.mode-emergent {
+    border-left: 4px solid #3498db;
+}
+
+.facilitation-card.mode-scaffolded {
+    border-left: 4px solid #2ecc71;
+}
+
+.facilitation-card.mode-responsive {
+    border-left: 4px solid #9b59b6;
+}
+
+.facilitation-card.mode-ambient {
+    border-left: 4px solid #95a5a6;
+}
+
+.facilitation-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.facilitation-card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #2c3e50;
+}
+
+.facilitation-mode-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #ecf0f1;
+    color: #7f8c8d;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+.facilitation-card-body {
+    margin-bottom: 1rem;
+}
+
+.facilitation-resources {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.facilitation-resource-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resource-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.resource-link:hover {
+    text-decoration: underline;
+}
+
+.discipline-note {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-left: 0.5rem;
+}
+
+.facilitation-card-footer {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* ========================================
+   Intervention Prompts
+   ======================================== */
+
+.space-facilitation-prompt {
+    margin: 1rem 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ambient mode - very subtle */
+.facilitation-ambient {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #f8f9fa;
+    border-left: 3px solid #95a5a6;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.facilitation-icon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.facilitation-hint {
+    flex-grow: 1;
+}
+
+.facilitation-expand {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.facilitation-expand:hover {
+    opacity: 1;
+}
+
+/* Scaffolded mode - structured support */
+.facilitation-scaffold {
+    background: #e8f8f5;
+    border: 1px solid #2ecc71;
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.facilitation-scaffold h4 {
+    color: #27ae60;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.facilitation-context {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Emergent mode - diverse exploration */
+.facilitation-emergent {
+    background: #ebf5fb;
+    border: 1px solid #3498db;
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.facilitation-emergent h4 {
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.resource-card-compact {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #d0d0d0;
+}
+
+.resource-card-compact h5 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #2c3e50;
+}
+
+.resource-type-label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Responsive mode - direct answer */
+.facilitation-responsive {
+    background: #f4ecf7;
+    border: 1px solid #9b59b6;
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.facilitation-responsive h4 {
+    color: #8e44ad;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.direct-answer {
+    background: #fff;
+    padding: 1rem;
+    border-left: 3px solid #9b59b6;
+    margin-bottom: 1rem;
+}
+
+.clarification-needed {
+    background: #fff9e6;
+    padding: 1rem;
+    border-left: 3px solid #f39c12;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   Resource Detail View
+   ======================================== */
+
+.space-facilitation-resource {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.resource-header {
+    margin-bottom: 2rem;
+}
+
+.resource-header h1 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.resource-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.resource-type {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #3498db;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+}
+
+.resource-scales {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.scale-badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: #ecf0f1;
+    border-radius: 8px;
+    margin-left: 0.25rem;
+    font-size: 0.8rem;
+}
+
+.resource-overview,
+.resource-sections,
+.resource-checkpoints,
+.resource-components,
+.resource-principles,
+.discipline-adaptation {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.resource-overview h2,
+.resource-sections h2,
+.resource-checkpoints h2,
+.resource-components h2,
+.resource-principles h2 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.discipline-adaptation {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+}
+
+.discipline-adaptation h3 {
+    color: #856404;
+    margin-top: 0;
+}
+
+.discipline-specific {
+    color: #533f03;
+    font-style: italic;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.checkpoint-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.checkpoint-item input[type="checkbox"] {
+    margin-right: 0.75rem;
+    transform: scale(1.2);
+}
+
+.checkpoint-item label {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* ========================================
+   Empty States
+   ======================================== */
+
+.facilitation-empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.facilitation-empty-state p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   Resource Categories
+   ======================================== */
+
+.resource-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.resource-category {
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.resource-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.resource-category h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.resource-category .text-muted {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   Actions and Buttons
+   ======================================== */
+
+.facilitation-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.resource-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+.facilitation-card:focus-within,
+.resource-card-compact:focus-within {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+    .facilitation-card {
+        border-width: 2px;
+    }
+
+    .resource-link {
+        text-decoration: underline;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .space-facilitation-prompt {
+        animation: none;
+    }
+
+    .facilitation-card,
+    .resource-category {
+        transition: none;
+    }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+    .space-facilitation-dashboard,
+    .space-facilitation-resource {
+        padding: 1rem;
+    }
+
+    .facilitation-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .facilitation-card-footer,
+    .resource-actions {
+        flex-direction: column;
+    }
+
+    .resource-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

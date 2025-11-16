@@ -1,0 +1,102 @@
+
+<div class=["space-facilitation-prompt" "facilitation-mode-" mode]>
+
+  if(mode == "ambient") {
+    <div class="facilitation-ambient">
+      <span class="facilitation-icon">"💡"</span>
+      <span class="facilitation-hint">
+        "Facilitation support available if needed"
+      </span>
+      <a href="/do/space-facilitation/dashboard" class="facilitation-expand">
+        "View"
+      </a>
+    </div>
+  }
+
+  if(mode == "scaffolded") {
+    <div class="facilitation-scaffold">
+      <h4> "Suggested Support for This Stage" </h4>
+      <p class="facilitation-context">
+        reasoning
+      </p>
+
+      if(resources) {
+        <ul class="facilitation-resources">
+          each(resources) {
+            <li class="facilitation-resource-item">
+              <a href=link class="resource-link"> title </a>
+              if(reason) {
+                <span class="resource-reason"> reason </span>
+              }
+            </li>
+          }
+        </ul>
+      }
+
+      <div class="facilitation-actions">
+        <button class="btn btn-sm btn-outline-secondary" data-action="snooze">
+          "Remind me later"
+        </button>
+        <button class="btn btn-sm btn-link" data-action="feedback">
+          "This isn't quite right"
+        </button>
+      </div>
+    </div>
+  }
+
+  if(mode == "emergent") {
+    <div class="facilitation-emergent">
+      <h4> "Facilitation Resources Available" </h4>
+      <p> "Based on the complexity of your current work, these diverse resources might be helpful:" </p>
+
+      if(resources) {
+        <div class="resource-grid">
+          each(resources) {
+            <div class="resource-card-compact">
+              <h5> title </h5>
+              <p class="resource-type-label"> type </p>
+              <a href=link class="btn btn-sm btn-outline-primary"> "Explore" </a>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  if(mode == "responsive") {
+    <div class="facilitation-responsive">
+      <h4> "Support for: " query </h4>
+
+      if(hasDirectAnswer) {
+        <div class="direct-answer">
+          answer
+        </div>
+      }
+
+      if(resources) {
+        <div class="suggested-resources">
+          <h5> "These Resources Might Help:" </h5>
+          each(resources) {
+            <div class="resource-card">
+              <h6> title </h6>
+              <p> description </p>
+              <a href=link class="btn btn-sm btn-primary"> "Explore this resource" </a>
+            </div>
+          }
+        </div>
+      }
+
+      if(needsClarification) {
+        <div class="clarification-needed">
+          <p> "I'd like to help but need to understand better:" </p>
+          <ul>
+            each(clarificationQuestions) {
+              <li> . </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  }
+
+</div>
