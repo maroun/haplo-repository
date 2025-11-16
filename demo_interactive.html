@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACE Facilitation Plugin - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .demo-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-controls {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .demo-controls label {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .demo-controls select, .demo-controls button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .demo-controls button {
+            background: #667eea;
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+
+        .demo-controls button:hover {
+            background: #5568d3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Import styles from facilitation.css */
+        .space-facilitation-dashboard {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .facilitation-header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 1rem;
+        }
+
+        .facilitation-header h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .facilitation-header .lead {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .facilitation-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .facilitation-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .facilitation-card.mode-emergent {
+            border-left: 4px solid #3498db;
+        }
+
+        .facilitation-card.mode-scaffolded {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .facilitation-card.mode-responsive {
+            border-left: 4px solid #9b59b6;
+        }
+
+        .facilitation-card.mode-ambient {
+            border-left: 4px solid #95a5a6;
+        }
+
+        .facilitation-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .facilitation-card-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #2c3e50;
+        }
+
+        .facilitation-mode-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #ecf0f1;
+            color: #7f8c8d;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            text-transform: capitalize;
+        }
+
+        .mode-emergent .facilitation-mode-badge {
+            background: #ebf5fb;
+            color: #2980b9;
+        }
+
+        .mode-scaffolded .facilitation-mode-badge {
+            background: #e8f8f5;
+            color: #27ae60;
+        }
+
+        .mode-responsive .facilitation-mode-badge {
+            background: #f4ecf7;
+            color: #8e44ad;
+        }
+
+        .facilitation-card-body {
+            margin-bottom: 1rem;
+        }
+
+        .facilitation-context {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .facilitation-resources {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0;
+        }
+
+        .facilitation-resource-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resource-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+
+        .facilitation-card-footer {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-link {
+            background: transparent;
+            color: #7f8c8d;
+            border: none;
+            text-decoration: underline;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-category {
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .resource-category h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-category p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: none;
+            animation: slideIn 0.3s ease-in;
+            z-index: 1000;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+        }
+
+        .close-modal:hover {
+            color: #2c3e50;
+        }
+
+        .scenario-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .scenario-info strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1>🌱 SPACE Community Engagement Facilitation</h1>
+        <p>Interactive Demo - Explore how intelligent facilitation supports community-engaged research</p>
+    </div>
+
+    <div class="demo-controls">
+        <div>
+            <label for="scenario">Demo Scenario:</label>
+            <select id="scenario">
+                <option value="proposal">Proposal Development (Scaffolded Mode)</option>
+                <option value="ethics">Ethics Review (Emergent Mode)</option>
+                <option value="query">User Query (Responsive Mode)</option>
+                <option value="ambient">Background Monitoring (Ambient Mode)</option>
+            </select>
+        </div>
+        <div>
+            <label for="userPreference">User Preference:</label>
+            <select id="userPreference">
+                <option value="balanced">Balanced (Default)</option>
+                <option value="minimal">Minimal Intervention</option>
+                <option value="proactive">Proactive Support</option>
+            </select>
+        </div>
+        <button id="loadScenario">Load Scenario</button>
+        <button id="viewResources">Browse Resource Library</button>
+    </div>
+
+    <div class="container">
+        <div id="scenarioInfo" class="scenario-info" style="display: none;">
+            <strong id="scenarioTitle"></strong>
+            <div id="scenarioDescription"></div>
+        </div>
+
+        <div class="space-facilitation-dashboard">
+            <div class="facilitation-header">
+                <h2>Community Engagement Facilitation Dashboard</h2>
+                <p class="lead">Intelligent support when you need it, available when you want it</p>
+            </div>
+
+            <div id="facilitationContent">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="feedback-message" id="feedbackMessage"></div>
+
+    <!-- Modal for resource details -->
+    <div class="modal" id="resourceModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const scenarios = {
+            proposal: {
+                title: "Scenario: PhD Student Beginning Proposal Development",
+                description: "Sarah, a PhD student in Urban Planning, is developing her dissertation proposal. She wants to work with a local neighborhood association on affordable housing research. The facilitation system recognizes this as a key moment and offers scaffolded support.",
+                mode: "scaffolded",
+                cards: [{
+                    title: "Suggested Support for This Stage: Proposal Development",
+                    mode: "scaffolded",
+                    context: "Based on where you are in the process, these resources might be helpful. Community engagement at the proposal stage benefits from early attention to partnership dynamics and ethical considerations.",
+                    resources: [
+                        { title: "Building Reciprocal Community Partnerships", type: "guide" },
+                        { title: "Community-Centered Ethics Beyond IRB", type: "checklist" },
+                        { title: "Mapping and Addressing Power Dynamics", type: "worksheet" }
+                    ]
+                }]
+            },
+            ethics: {
+                title: "Scenario: Preparing Ethics Committee Submission",
+                description: "Dr. Martinez is supervising a student doing health research with an indigenous community. The ethics review process involves multiple ethical frameworks - institutional IRB requirements AND community-defined ethics. The system recognizes this complexity and offers diverse resources for exploration.",
+                mode: "emergent",
+                cards: [{
+                    title: "Facilitation Resources Available: Ethics Review",
+                    mode: "emergent",
+                    context: "This situation involves multiple scales and stakeholders. The following diverse resources enable you to explore different dimensions of ethical practice in community-engaged research.",
+                    resources: [
+                        { title: "Co-Developing Ethical Frameworks with Communities", type: "framework" },
+                        { title: "Data Sovereignty and Community Ownership", type: "framework" },
+                        { title: "Community-Centered Ethics Beyond IRB", type: "checklist" }
+                    ]
+                }]
+            },
+            query: {
+                title: "Scenario: User-Initiated Query About Authorship",
+                description: "Dr. Chen is facing a question: How should community members be recognized as authors when academic publishing conventions don't fit participatory research? She searches 'community authorship' and the system responds with targeted resources.",
+                mode: "responsive",
+                cards: [{
+                    title: "Support for: Community Authorship",
+                    mode: "responsive",
+                    context: "You asked about community authorship. Here are resources that directly address recognition of community contributions in academic outputs.",
+                    resources: [
+                        { title: "Collaborative Authorship and Attribution", type: "guide" },
+                        { title: "Community Partnership Agreement Template", type: "template" },
+                        { title: "Community-Centered Knowledge Translation", type: "framework" }
+                    ]
+                }]
+            },
+            ambient: {
+                title: "Scenario: Background Monitoring",
+                description: "The system is monitoring workflows but no urgent intervention is needed. Resources are available but presented subtly, maintaining presence without being intrusive.",
+                mode: "ambient",
+                cards: [{
+                    title: "Facilitation Support Available",
+                    mode: "ambient",
+                    context: "No active facilitation opportunities at the moment. The resource library is always available when you need it.",
+                    resources: []
+                }]
+            }
+        };
+
+        const resourceLibrary = {
+            guides: [
+                { title: "Building Reciprocal Community Partnerships", description: "Framework for establishing equitable partnerships that honor community knowledge and agency" },
+                { title: "Principles of Research Reciprocity", description: "Moving beyond extraction to mutual benefit in community-engaged research" },
+                { title: "Collaborative Authorship and Attribution", description: "Ensuring equitable recognition of community contributions to research" }
+            ],
+            frameworks: [
+                { title: "Co-Developing Ethical Frameworks with Communities", description: "Moving from ethics as compliance to ethics as ongoing dialogue" },
+                { title: "Data Sovereignty and Community Ownership", description: "Centering community rights and governance in research data" },
+                { title: "Community-Centered Knowledge Translation", description: "Making research findings accessible and actionable for communities" }
+            ],
+            checklists: [
+                { title: "Community-Centered Ethics Beyond IRB", description: "Expanding ethical consideration beyond institutional requirements" }
+            ],
+            templates: [
+                { title: "Community Partnership Agreement Template", description: "Template for creating formal partnership agreements that center community agency" }
+            ],
+            worksheets: [
+                { title: "Mapping and Addressing Power Dynamics", description: "Reflective tool for identifying and addressing power imbalances" }
+            ]
+        };
+
+        function loadScenario() {
+            const scenarioKey = document.getElementById('scenario').value;
+            const scenario = scenarios[scenarioKey];
+
+            // Show scenario info
+            document.getElementById('scenarioInfo').style.display = 'block';
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            document.getElementById('scenarioDescription').textContent = scenario.description;
+
+            // Load facilitation cards
+            const content = document.getElementById('facilitationContent');
+            content.innerHTML = '';
+
+            if (scenario.cards.length === 0 || scenario.mode === 'ambient') {
+                content.innerHTML = `
+                    <div class="facilitation-card mode-ambient">
+                        <div class="facilitation-card-body">
+                            <p style="text-align: center; color: #7f8c8d; padding: 2rem;">
+                                💡 ${scenario.context}
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                scenario.cards.forEach(card => {
+                    const cardHtml = createCardHtml(card);
+                    content.innerHTML += cardHtml;
+                });
+            }
+        }
+
+        function createCardHtml(card) {
+            const resourcesHtml = card.resources.map(r => `
+                <li class="facilitation-resource-item">
+                    <a href="#" class="resource-link" onclick="showResource('${r.title}'); return false;">${r.title}</a>
+                    <span style="font-size: 0.85rem; color: #7f8c8d;">${r.type}</span>
+                </li>
+            `).join('');
+
+            return `
+                <div class="facilitation-card mode-${card.mode}">
+                    <div class="facilitation-card-header">
+                        <h3>${card.title}</h3>
+                        <span class="facilitation-mode-badge">${card.mode}</span>
+                    </div>
+                    <div class="facilitation-card-body">
+                        <p class="facilitation-context">${card.context}</p>
+                        ${card.resources.length > 0 ? `
+                            <h4 style="margin-top: 1rem;">Suggested Resources:</h4>
+                            <ul class="facilitation-resources">
+                                ${resourcesHtml}
+                            </ul>
+                        ` : ''}
+                    </div>
+                    <div class="facilitation-card-footer">
+                        <button class="btn btn-primary" onclick="markHelpful('${card.title}')">This is helpful</button>
+                        <button class="btn btn-secondary" onclick="dismiss('${card.title}')">Not now</button>
+                        <button class="btn btn-link" onclick="provideFeedback()">This isn't quite right</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showResourceLibrary() {
+            const content = document.getElementById('facilitationContent');
+            document.getElementById('scenarioInfo').style.display = 'none';
+
+            let libraryHtml = '<h2 style="margin-bottom: 1.5rem;">Resource Library</h2>';
+            libraryHtml += '<div class="resource-grid">';
+
+            for (const [type, resources] of Object.entries(resourceLibrary)) {
+                libraryHtml += `
+                    <div class="resource-category">
+                        <h3>${type.charAt(0).toUpperCase() + type.slice(1)}</h3>
+                        <p>${resources.length} resource${resources.length > 1 ? 's' : ''} available</p>
+                        <button class="btn btn-primary" onclick="showResourceType('${type}')">View ${type}</button>
+                    </div>
+                `;
+            }
+
+            libraryHtml += '</div>';
+            content.innerHTML = libraryHtml;
+        }
+
+        function showResourceType(type) {
+            const modal = document.getElementById('resourceModal');
+            const modalContent = document.getElementById('modalContent');
+
+            let html = `<h3>${type.charAt(0).toUpperCase() + type.slice(1)}</h3>`;
+            html += '<ul style="list-style: none; padding: 0;">';
+
+            resourceLibrary[type].forEach(resource => {
+                html += `
+                    <li style="padding: 1rem; margin-bottom: 1rem; background: #f8f9fa; border-radius: 4px;">
+                        <strong style="color: #2c3e50;">${resource.title}</strong>
+                        <p style="margin-top: 0.5rem; color: #555;">${resource.description}</p>
+                        <button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="showResource('${resource.title}')">View Resource</button>
+                    </li>
+                `;
+            });
+
+            html += '</ul>';
+            modalContent.innerHTML = html;
+            modal.style.display = 'flex';
+        }
+
+        function showResource(title) {
+            showMessage(`Opening: ${title}`, '#3498db');
+            // In a real system, this would navigate to the resource detail page
+        }
+
+        function closeModal() {
+            document.getElementById('resourceModal').style.display = 'none';
+        }
+
+        function markHelpful(cardTitle) {
+            showMessage('Thanks for the feedback! This helps improve future suggestions.', '#2ecc71');
+        }
+
+        function dismiss(cardTitle) {
+            showMessage('Dismissed. We\'ll remind you about this later.', '#95a5a6');
+        }
+
+        function provideFeedback() {
+            showMessage('Feedback form would open here. Your input helps us improve.', '#3498db');
+        }
+
+        function showMessage(text, color) {
+            const msg = document.getElementById('feedbackMessage');
+            msg.textContent = text;
+            msg.style.background = color;
+            msg.style.display = 'block';
+
+            setTimeout(() => {
+                msg.style.display = 'none';
+            }, 3000);
+        }
+
+        // Event listeners
+        document.getElementById('loadScenario').addEventListener('click', loadScenario);
+        document.getElementById('viewResources').addEventListener('click', showResourceLibrary);
+
+        // Click outside modal to close
+        document.getElementById('resourceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Load initial scenario
+        loadScenario();
+    </script>
+</body>
+</html>
